@@ -3,6 +3,12 @@
 
 #include <QMainWindow>
 #include <QOpenGLWidget>
+#include <QIcon>
+#include <QPushButton>
+#include <QAction>
+#include <QToolBar>
+#include <QFileDialog>
+#include <QString>
 #include "myglwidget.h"
 
 namespace Ui {
@@ -25,6 +31,12 @@ private slots:
     void on_topPanel_textChanged(const QString &arg1);
 
     void on_action_Close_triggered();
+
+    void on_action_Open_triggered();
+
+    void on_action_Save_triggered();
+
+    void on_actionTools_toggled(bool arg1);
 
 private:
     Ui::MainWindow *ui;

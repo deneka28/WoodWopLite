@@ -16,7 +16,7 @@ MyGlWidget::~MyGlWidget()
 
 void MyGlWidget::initializeGL()
 {
-    glClearColor(0.35, 0.35, 0.35, 1);
+    glClearColor(0.30, 0.43, 0.48, 1);
     glEnable(GL_DEPTH_TEST); // задаем глубину проверки пикселей
     glEnable(GL_LIGHT0);
     glEnable(GL_LIGHTING);
@@ -35,7 +35,7 @@ void MyGlWidget::paintGL()
     glRotatef(30.0f, 0.5f, 0.0f, 0.0f);
     glRotatef(30.0f, 0.0f, 0.5f, 0.0f);
 
-    glColor3f(1.0f, 0.6f, 0.1f);
+    glColor3f(1.0f, 0.4f, 0.3f);
 
     drawPanel(wedthP, heightP, topP);
 

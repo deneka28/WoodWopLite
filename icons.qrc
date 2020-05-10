@@ -1,11 +1,15 @@
 <RCC>
     <qresource prefix="/new/icons">
         <file>icons/sverlo1.svg</file>
-        <file>icons/document-new-from-template.svg</file>
-        <file>icons/document-open-folder.svg</file>
-        <file>icons/document-save-all.svg</file>
         <file>icons/document-save.svg</file>
-        <file>icons/edit-copy.svg</file>
         <file>icons/edit-cut.svg</file>
+        <file>icons/entry-clone.svg</file>
+        <file>icons/edit-paste.svg</file>
+        <file>icons/document-open.svg</file>
+        <file>icons/document-new.svg</file>
+        <file>icons/utilities.svg</file>
+        <file>icons/icon.svg</file>
+        <file>icons/horixontal.svg</file>
+        <file>icons/vertical.svg</file>
     </qresource>
 </RCC>
