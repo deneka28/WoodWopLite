@@ -17,9 +17,12 @@ MainWindow::MainWindow(QWidget *parent) :
     QIcon iconTab_1(pixmap2);
     ui->tabWidget->setTabIcon(0, iconTab_1);
     ui->tabWidget->setIconSize(pixmap.rect().size());
+    ui->action_Close->setIcon(QIcon::fromTheme("window-close"));
 
     ui->actionVerticalDrill->setVisible(false);
     ui->actionHorizontalDrill->setVisible(false);
+    ui->myGLWidget->setFocus();
+
 
 }
 
