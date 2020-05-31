@@ -72,3 +72,23 @@ void MainWindow::on_actionTools_toggled(bool arg1)
     ui->actionHorizontalDrill->setVisible(arg1);
 
 }
+
+void MainWindow::on_lineX_textChanged(const QString &arg1)
+{
+    ui->myGLWidget->cylX = arg1.toFloat();
+}
+
+void MainWindow::on_lineY_textChanged(const QString &arg1)
+{
+    ui->myGLWidget->cylY = arg1.toFloat();
+}
+
+void MainWindow::on_lineDiam_textChanged(const QString &arg1)
+{
+    ui->myGLWidget->cylRad = arg1.toFloat();
+}
+
+void MainWindow::on_lineDepth_textChanged(const QString &arg1)
+{
+    ui->myGLWidget->cylHeight = arg1.toFloat();
+}

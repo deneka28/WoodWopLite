@@ -38,6 +38,14 @@ private slots:
 
     void on_actionTools_toggled(bool arg1);
 
+    void on_lineX_textChanged(const QString &arg1);
+
+    void on_lineY_textChanged(const QString &arg1);
+
+    void on_lineDiam_textChanged(const QString &arg1);
+
+    void on_lineDepth_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
 

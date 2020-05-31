@@ -1,6 +1,8 @@
 #include "myglwidget.h"
 #include "ui_mainwindow.h"
 
+#define PI 3.1415927
+
 MyGlWidget::MyGlWidget(QWidget *parent)
     : QGLWidget(parent)
 {
@@ -18,10 +20,8 @@ MyGlWidget::~MyGlWidget()
 
 void MyGlWidget::initializeGL()
 {
-    glClearColor(0.30, 0.43, 0.48, 0);
+    glClearColor(0.53, 0.63, 0.66, 1);
     glEnable(GL_DEPTH_TEST); // задаем глубину проверки пикселей
-    glEnable(GL_LIGHT0);
-    glEnable(GL_LIGHTING);
     glEnable(GL_COLOR_MATERIAL);
     glShadeModel(GL_FLAT);
     glEnable(GL_CULL_FACE);
@@ -42,7 +42,12 @@ void MyGlWidget::paintGL()
     glRotatef(zRot, 0.0f, 0.0f, 1.0f);
 
     drawAxis();
+
+    glPolygonMode (GL_FRONT_AND_BACK, GL_LINE);
     drawPanel(heightP, wedthP, topP);
+
+    glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
+    drawCylinder(cylX, cylY, cylHeight, cylRad);
 
     glFlush();
 
@@ -53,7 +58,7 @@ void MyGlWidget::resizeGL(int w, int h)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    GLfloat ratio=(GLfloat)h/(GLfloat)w;
+    GLfloat ratio = (GLfloat)h/(GLfloat)w;
 
     if (w>=h)
        glOrtho(-1.0/ratio, 1.0/ratio, -1.0, 1.0, -10.0, 1.0);
@@ -89,39 +94,83 @@ void MyGlWidget::wheelEvent(QWheelEvent *pe)
 void MyGlWidget::drawPanel(float height, float wedth, float top)
 {
         glLineWidth(1.0f);
-        glColor3f(0.5f, 0.5f, 0.2f);
+        glColor4f(0.5f, 0.3f, 0.2f, 1.0f);
         glBegin(GL_QUADS);
         // FRONT
-        glVertex3f(-1.0f * height, -1.0f * wedth, top);
-        glVertex3f( height, -1.0f * wedth, top);
+        glVertex3f(0.0f, -0.0f, top);
+        glVertex3f( height, 0.0f, top);
         glVertex3f( height, wedth, top);
-        glVertex3f(-1.0f * height, wedth, top);
+        glVertex3f(0.0f, wedth, top);
         // BACK
-        glVertex3f(-1.0f * height, -1.0f * wedth, -1.0f * top);
-        glVertex3f(-1.0f * height, wedth, -1.0f * top);
-        glVertex3f( height, wedth, -1.0f * top);
-        glVertex3f( height, -1.0f * wedth, -1.0f * top);
+        glVertex3f(0.0f, 0.0f, 0.0f);
+        glVertex3f(0.0f, wedth, 0.0f);
+        glVertex3f( height, wedth, 0.0f);
+        glVertex3f( height, 0.0f, 0.0f);
         // LEFT
-        glVertex3f(-1.0f * height, -1.0f * wedth, top);
-        glVertex3f(-1.0f * height, wedth, top);
-        glVertex3f(-1.0f * height, wedth, -1.0f * top);
-        glVertex3f(-1.0f * height, -1.0f * wedth, -1.0f * top);
+        glVertex3f(0.0f, 0.0f, top);
+        glVertex3f(0.0f, wedth, top);
+        glVertex3f(0.0f, wedth, 0.0f);
+        glVertex3f(0.0f, 0.0f, 0.0f);
         // RIGHT
-        glVertex3f( height, -1.0f * wedth, -1.0f * top);
-        glVertex3f( height, wedth, -1.0f * top);
+        glVertex3f( height, 0.0f, 0.0f);
+        glVertex3f( height, wedth, 0.0f);
         glVertex3f( height, wedth, top);
-        glVertex3f( height, -1.0f * wedth, top);
+        glVertex3f( height, 0.0f, top);
         // TOP
-        glVertex3f(-1.0f * height, wedth, top);
+        glVertex3f(0.0f, wedth, top);
         glVertex3f( height, wedth, top);
-        glVertex3f( height, wedth, -1.0f * top);
-        glVertex3f(-1.0f * height, wedth, -1.0f * top);
+        glVertex3f( height, wedth, 0.0f);
+        glVertex3f(0.0f, wedth, 0.0f);
         // BOTTOM
-        glVertex3f(-1.0f * height, -1.0f * wedth, top);
-        glVertex3f(-1.0f * height, -1.0f * wedth, -1.0f * top);
-        glVertex3f( height, -1.0f * wedth, -1.0f * top);
-        glVertex3f( height, -1.0f * wedth, top);
+        glVertex3f(0.0f, 0.0f, top);
+        glVertex3f(0.0f, 0.0f, 0.0f);
+        glVertex3f( height, 0.0f, 0.0f);
+        glVertex3f( height, 0.0f, top);
         glEnd();
+}
+
+void MyGlWidget::drawCylinder(float cX, float cY, float cHeight, float cRad)
+{
+    int num_segments = 32;
+
+    /** Draw the tube */
+    glColor3f(0, 40, 0);
+    glBegin(GL_QUAD_STRIP);
+    for(int ii = 0; ii < num_segments; ii++)
+    {
+        float theta = 2.0f * PI * float(ii) / float(num_segments);
+        float x = cRad / 2 * cosf(theta);
+        float y = cRad / 2 * sinf(theta);
+
+        glVertex3f(x + cX, y + cY, topP);
+        glVertex3f(x + cX, y + cY, topP - cHeight);
+    }
+   glEnd();
+
+    //cyrkle
+   glColor3f(0, 40, 0);
+    glBegin(GL_POLYGON);
+    for(int ii = 0; ii < num_segments; ii++)
+    {
+        float theta = 2.0f * PI * float(ii) / float(num_segments);//get the current angle
+        float x = cRad / 2 * cosf(theta);
+        float y = cRad / 2 * sinf(theta);
+
+        glVertex3f(x + cX, y + cY, topP);
+    }
+    glEnd();
+
+    glColor3f(0, 40, 0);
+     glBegin(GL_POLYGON);
+     for(int ii = 0; ii < num_segments; ii++)
+     {
+         float theta = 2.0f * PI * float(ii) / float(num_segments);//get the current angle
+         float x = cRad / 2 * cosf(theta);
+         float y = cRad / 2 * sinf(theta);
+
+         glVertex3f(x + cX, y + cY, topP - cHeight);
+     }
+     glEnd();
 }
 
 void MyGlWidget::scale_plus()
@@ -141,25 +190,23 @@ void MyGlWidget::defaultScene()
 
 void MyGlWidget::drawAxis()
 {
-    glLineWidth(2.0f);
+    glLineWidth(4.0f);
 
     glColor4f(1.00f, 0.00f, 0.00f, 1.0f);
     glBegin(GL_LINES);
-//       glVertex3f( 1.0f,  0.0f,  0.0f);
-//       glVertex3f(-1.0f,  0.0f,  0.0f);
-           glVertex3f( heightP/2,  0.0f,  0.0f);
-           glVertex3f(-1.0f * (heightP/2),  0.0f,  0.0f);
+       glVertex3f( 8.0f,  -1.0f,  0.0f);
+       glVertex3f(-1.0f,  -1.0f,  0.0f);
     glEnd();
 
     QColor halfGreen(0, 128, 0, 255);
     qglColor(halfGreen);
     glBegin(GL_LINES);
-       glVertex3f( 0.0f,  1.0f * (wedthP/2),  0.0f);
-       glVertex3f( 0.0f, -1.0f * (wedthP/2),  0.0f);
+       glVertex3f( -1.0f,  8.0f,  0.0f);
+       glVertex3f( -1.0f, -1.0f,  0.0f);
 
        glColor4f(0.00f, 0.00f, 1.00f, 1.0f);
-       glVertex3f( 0.0f,  0.0f,  1.0f * (topP/2));
-       glVertex3f( 0.0f,  0.0f, -1.0f * (topP/2));
+       glVertex3f( -1.0f,  -1.0f,  8.0f);
+       glVertex3f( -1.0f,  -1.0f, 0.0f);
     glEnd();
 }
 

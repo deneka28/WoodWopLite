@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>932</width>
-    <height>501</height>
+    <width>1284</width>
+    <height>615</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -40,7 +40,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>932</width>
+     <width>1284</width>
      <height>25</height>
     </rect>
    </property>
@@ -129,7 +129,7 @@
         <enum>QTabWidget::Rounded</enum>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <property name="tabsClosable">
         <bool>false</bool>
@@ -334,6 +334,18 @@
          <string>Tab 1</string>
         </attribute>
         <layout class="QHBoxLayout" name="horizontalLayout">
+         <property name="leftMargin">
+          <number>1</number>
+         </property>
+         <property name="topMargin">
+          <number>1</number>
+         </property>
+         <property name="rightMargin">
+          <number>1</number>
+         </property>
+         <property name="bottomMargin">
+          <number>1</number>
+         </property>
          <item>
           <widget class="QFrame" name="frame_2">
            <property name="frameShape">
@@ -348,6 +360,82 @@
            <property name="midLineWidth">
             <number>2</number>
            </property>
+           <layout class="QGridLayout" name="gridLayout_8">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item row="0" column="0">
+             <layout class="QGridLayout" name="gridLayout_5">
+              <item row="0" column="2" colspan="2">
+               <widget class="QLineEdit" name="lineX"/>
+              </item>
+              <item row="1" column="2" colspan="3">
+               <widget class="QLineEdit" name="lineDiam"/>
+              </item>
+              <item row="0" column="0" colspan="2">
+               <widget class="QLabel" name="label_4">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(85, 170, 0);
+font: 75 12pt &quot;Ubuntu&quot;;</string>
+                </property>
+                <property name="text">
+                 <string>X    Y</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2" colspan="3">
+               <widget class="QLineEdit" name="lineDepth"/>
+              </item>
+              <item row="1" column="0" colspan="2">
+               <widget class="QLabel" name="label_5">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(85, 170, 0);
+font: 75 12pt &quot;Ubuntu&quot;;</string>
+                </property>
+                <property name="text">
+                 <string>Diametr</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="4" alignment="Qt::AlignHCenter">
+               <widget class="QLineEdit" name="lineY"/>
+              </item>
+              <item row="2" column="0" colspan="2">
+               <widget class="QLabel" name="label_6">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(85, 170, 0);
+font: 75 12pt &quot;Ubuntu&quot;;</string>
+                </property>
+                <property name="text">
+                 <string>Depth</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="2">
+               <spacer name="verticalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </widget>
          </item>
          <item>
@@ -364,6 +452,21 @@
            <property name="midLineWidth">
             <number>2</number>
            </property>
+           <layout class="QGridLayout" name="gridLayout_6">
+            <item row="0" column="0">
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
           </widget>
          </item>
          <item>
@@ -380,6 +483,21 @@
            <property name="midLineWidth">
             <number>2</number>
            </property>
+           <layout class="QGridLayout" name="gridLayout_7">
+            <item row="0" column="0">
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
           </widget>
          </item>
         </layout>
